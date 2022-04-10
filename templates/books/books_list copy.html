@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Каталог книг{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="header">
+            <h1><a href="/books">Каталог</a></h1>
+        </div>
+        <div class="row">
+            {% for book in page.object_list %}
+            <div class="book col-md-4">
+                <h2>{{ book.name }}</h2>
+                <p>Автор: {{ book.author }}</p>
+                <p>Дата публикации: {{ book.pub_date }}</p>
+            </div>
+            {% endfor %}
+            {% comment %} <div class="book col-md-4">
+                <h2>Сияние</h2>
+                <p>Автор: Стивен Кинг</p>
+                <p>Дата публикации: 2018-09-10</p>
+            </div>
+            <div class="book col-md-4">
+                <h2>1984</h2>
+                <p>Автор: Джордж Оруэл</p>
+                <p>Дата публикации: 2015-03-11</p> {% endcomment %}
+            </div>
+        {% if page.has_previous %}
+         <a href="?page={{ page.previous_page_number }}">{{ last_date }}</a>
+        {% endif %}
+        {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}">{{ next_date }}</a>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}
